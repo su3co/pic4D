@@ -1,0 +1,127 @@
+{
+  "name": "dark",
+  "description": "Dark: ground exactly #0c0e12 (the frame disappears into a dark web page), dark neutral chip with light edges, light in its wavelength colour with restrained bloom, no vignette.",
+  "view_transform": "Standard",
+  "look": "None",
+  "exposure": 0.0,
+  "background": "#0c0e12",
+  "ground": {
+    "kind": "flat_shadow",
+    "shadow": 0.35
+  },
+  "world_strength": 0.1,
+  "world_color": "#c8d2e0",
+  "lights": [
+    {
+      "type": "SUN",
+      "strength": 1.1,
+      "azimuth": 120,
+      "elevation": 50,
+      "angle": 12,
+      "color": "#dfe7f2"
+    },
+    {
+      "type": "AREA",
+      "strength": 0.55,
+      "azimuth": -35,
+      "elevation": 22,
+      "size": 1.6,
+      "color": "#ffffff"
+    },
+    {
+      "type": "AREA",
+      "strength": 0.35,
+      "azimuth": 200,
+      "elevation": 18,
+      "size": 1.2,
+      "color": "#b9c8dc"
+    }
+  ],
+  "bloom": {
+    "threshold": 0.85,
+    "strength": 0.5,
+    "size": 0.38
+  },
+  "dof_fstop": null,
+  "show_cladding": false,
+  "materials": {
+    "si": {
+      "color": "#3a414b",
+      "roughness": 0.32,
+      "metallic": 0.15,
+      "specular": 0.6
+    },
+    "sin": {
+      "color": "#47433d",
+      "roughness": 0.34,
+      "metallic": 0.1
+    },
+    "sio2": {
+      "color": "#7d8ba0",
+      "roughness": 0.08,
+      "alpha": 0.05
+    },
+    "metal": {
+      "color": "#8a9099",
+      "roughness": 0.28,
+      "metallic": 1.0
+    },
+    "au": {
+      "color": "#d4a24a",
+      "roughness": 0.25,
+      "metallic": 1.0
+    },
+    "doped_n": {
+      "color": "#353d4c",
+      "roughness": 0.4
+    },
+    "doped_p": {
+      "color": "#463a3e",
+      "roughness": 0.4
+    },
+    "heater": {
+      "color": "#70757e",
+      "roughness": 0.3,
+      "metallic": 0.9
+    },
+    "polymer": {
+      "color": "#30343a",
+      "roughness": 0.5,
+      "alpha": 0.2
+    },
+    "water": {
+      "color": "#20364d",
+      "roughness": 0.05,
+      "alpha": 0.14
+    },
+    "substrate": {
+      "color": "#1a1f27",
+      "roughness": 0.42,
+      "metallic": 0.1,
+      "specular": 0.6
+    },
+    "box": {
+      "color": "#1f252e",
+      "roughness": 0.4
+    }
+  },
+  "light": {
+    "blend": "add",
+    "core_strength": 2.6,
+    "core_gain": 1.0,
+    "glow_strength": 0.9,
+    "glow_opacity": 1.0,
+    "base": 0.07,
+    "max_luminance": null,
+    "field_gamma": 1.1,
+    "field_negative": 0.3,
+    "field_opacity": 1.0,
+    "pulse_sharpness": 5.0
+  },
+  "overlay": {
+    "ink": "#edf1f0",
+    "muted": "#8b949e",
+    "font": "IBM Plex Mono",
+    "panel": null
+  }
+}

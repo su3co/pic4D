@@ -1,0 +1,116 @@
+{
+  "name": "black",
+  "description": "Black: dark glossy ground, dark chip, emissive light with bloom.",
+  "view_transform": "AgX",
+  "look": "AgX - Punchy",
+  "exposure": 0.0,
+  "background": "#030407",
+  "ground": {
+    "kind": "glossy",
+    "color": "#020203",
+    "roughness": 0.55
+  },
+  "world_strength": 0.05,
+  "lights": [
+    {
+      "type": "SUN",
+      "strength": 0.5,
+      "azimuth": 120,
+      "elevation": 45,
+      "angle": 8,
+      "color": "#c9d6ff"
+    },
+    {
+      "type": "AREA",
+      "strength": 0.25,
+      "azimuth": -40,
+      "elevation": 30,
+      "size": 1.5,
+      "color": "#ffffff"
+    }
+  ],
+  "bloom": {
+    "threshold": 0.9,
+    "strength": 0.9,
+    "size": 0.62
+  },
+  "dof_fstop": null,
+  "show_cladding": true,
+  "materials": {
+    "si": {
+      "color": "#3a404a",
+      "roughness": 0.3,
+      "metallic": 0.3
+    },
+    "sin": {
+      "color": "#3a3530",
+      "roughness": 0.3,
+      "metallic": 0.2
+    },
+    "sio2": {
+      "color": "#8899bb",
+      "roughness": 0.05,
+      "alpha": 0.04
+    },
+    "metal": {
+      "color": "#80858e",
+      "roughness": 0.25,
+      "metallic": 1.0
+    },
+    "au": {
+      "color": "#d9a441",
+      "roughness": 0.22,
+      "metallic": 1.0
+    },
+    "doped_n": {
+      "color": "#252b38",
+      "roughness": 0.4
+    },
+    "doped_p": {
+      "color": "#33282b",
+      "roughness": 0.4
+    },
+    "heater": {
+      "color": "#6d7179",
+      "roughness": 0.3,
+      "metallic": 0.9
+    },
+    "polymer": {
+      "color": "#30343a",
+      "roughness": 0.5,
+      "alpha": 0.2
+    },
+    "water": {
+      "color": "#1d3550",
+      "roughness": 0.05,
+      "alpha": 0.12
+    },
+    "substrate": {
+      "color": "#15181e",
+      "roughness": 0.35,
+      "metallic": 0.2
+    },
+    "box": {
+      "color": "#151820",
+      "roughness": 0.3
+    }
+  },
+  "light": {
+    "blend": "add",
+    "core_strength": 9.0,
+    "core_gain": 1.0,
+    "glow_strength": 2.2,
+    "glow_opacity": 1.0,
+    "base": 0.06,
+    "max_luminance": null,
+    "field_gamma": 1.1,
+    "field_negative": 0.3,
+    "field_opacity": 1.0,
+    "pulse_sharpness": 5.0
+  },
+  "overlay": {
+    "ink": "#f2f4f8",
+    "muted": "#9aa3b2",
+    "panel": null
+  }
+}

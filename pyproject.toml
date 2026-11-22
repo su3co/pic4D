@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pic4d"
+version = "0.1.0"
+description = "Photonic integrated circuits, animated in Blender: GDS layouts with light travelling through them"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "SU3 Labs" }]
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "scikit-image>=0.21", "gdstk>=0.9", "pillow>=10.1"]
+keywords = ["photonics", "blender", "gds", "visualization", "animation", "silicon photonics"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Topic :: Scientific/Engineering :: Visualization",
+]
+
+[project.optional-dependencies]
+gdsfactory = ["gdsfactory"]
+test = ["pytest"]
+
+[project.scripts]
+pic4d = "pic4d.cli:main"
+
+[project.urls]
+Repository = "https://github.com/su3co/pic4D"
+
+[tool.setuptools.packages.find]
+include = ["pic4d*"]
+
+[tool.setuptools.package-data]
+pic4d = ["styles/*.json"]

@@ -1,0 +1,49 @@
+name = "Mach–Zehnder modulator"
+subtitle = "SOI 220 nm rib · 1310 nm"
+gds = "d1-mzm.gds"
+# frame the input splitter and the start of the 3 mm phase shifters
+frame = [-10.0, -48.0, 250.0, 48.0]
+
+[[layer]]
+gds = [3, 0]
+zmin = 0.0
+zmax = 0.09
+material = "si"
+role = "solid"
+name = "slab"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"
+name = "rib"
+
+[[layer]]
+gds = [41, 0]
+zmin = 1.1
+zmax = 1.8
+material = "metal"
+role = "solid"
+name = "M1"
+opacity = 0.35   # see-through electrodes, so the arms under them stay visible
+
+[cladding]
+zmin = 0.0
+zmax = 1.1
+material = "sio2"
+
+[light]
+mode = "path"
+wavelength_nm = 1310
+source = [-8.511, -0.050]
+pulses = 12
+pulses_per_loop = 3
+caption = "Illustration of the light paths (not a simulation): the light splits into the two phase-shifter arms."
+
+[camera]
+move = "orbit"
+azimuth = -125
+elevation = 26
+amplitude = 10

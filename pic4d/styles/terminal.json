@@ -1,0 +1,129 @@
+{
+  "name": "terminal",
+  "description": "Terminal: a light-on-dark technical look. Near-black ground with a faint grid, dark chip with bright edges, light in its wavelength colour, monospace labels; encode with --ascii to redraw every frame as coloured ASCII characters.",
+  "view_transform": "Standard",
+  "look": "None",
+  "exposure": 0.0,
+  "background": "#04070a",
+  "ground": {
+    "kind": "grid",
+    "color": "#04070a",
+    "line": "#12302c",
+    "spacing_frac": 0.025,
+    "roughness": 0.8
+  },
+  "world_strength": 0.05,
+  "world_color": "#c8d2e0",
+  "lights": [
+    {
+      "type": "AREA",
+      "strength": 0.6,
+      "azimuth": -30,
+      "elevation": 30,
+      "size": 1.4,
+      "color": "#d8fff0"
+    },
+    {
+      "type": "AREA",
+      "strength": 0.4,
+      "azimuth": 160,
+      "elevation": 20,
+      "size": 1.0,
+      "color": "#9fffe0"
+    }
+  ],
+  "bloom": {
+    "threshold": 0.8,
+    "strength": 0.7,
+    "size": 0.45
+  },
+  "dof_fstop": null,
+  "show_cladding": false,
+  "materials": {
+    "si": {
+      "color": "#1c2422",
+      "roughness": 0.25,
+      "metallic": 0.3,
+      "specular": 0.8
+    },
+    "sin": {
+      "color": "#20262a",
+      "roughness": 0.25,
+      "metallic": 0.3,
+      "specular": 0.8
+    },
+    "sio2": {
+      "color": "#7d8ba0",
+      "roughness": 0.08,
+      "alpha": 0.05
+    },
+    "metal": {
+      "color": "#8a9099",
+      "roughness": 0.28,
+      "metallic": 1.0
+    },
+    "au": {
+      "color": "#d4a24a",
+      "roughness": 0.25,
+      "metallic": 1.0
+    },
+    "doped_n": {
+      "color": "#353d4c",
+      "roughness": 0.4
+    },
+    "doped_p": {
+      "color": "#463a3e",
+      "roughness": 0.4
+    },
+    "heater": {
+      "color": "#70757e",
+      "roughness": 0.3,
+      "metallic": 0.9
+    },
+    "polymer": {
+      "color": "#30343a",
+      "roughness": 0.5,
+      "alpha": 0.2
+    },
+    "water": {
+      "color": "#20364d",
+      "roughness": 0.05,
+      "alpha": 0.14
+    },
+    "substrate": {
+      "color": "#0b1012",
+      "roughness": 0.4,
+      "specular": 0.7
+    },
+    "box": {
+      "color": "#1f252e",
+      "roughness": 0.4
+    }
+  },
+  "light": {
+    "blend": "add",
+    "core_strength": 4.0,
+    "core_gain": 1.0,
+    "glow_strength": 1.4,
+    "glow_opacity": 1.0,
+    "base": 0.07,
+    "max_luminance": null,
+    "field_gamma": 1.1,
+    "field_negative": 0.3,
+    "field_opacity": 1.0,
+    "pulse_sharpness": 5.0
+  },
+  "overlay": {
+    "ink": "#c8ffe6",
+    "muted": "#5fae94",
+    "font": "IBM Plex Mono",
+    "panel": null
+  },
+  "post": {
+    "ascii": {
+      "cols": 200,
+      "charset": " .'`^,:;-~+=*!?%#&$@",
+      "boost": 1.6
+    }
+  }
+}

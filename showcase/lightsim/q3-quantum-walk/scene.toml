@@ -1,0 +1,33 @@
+name = "Quantum walk in 21 coupled waveguides"
+subtitle = "SiN 400 nm · 1550 nm"
+gds = "q3-quantum-walk.gds"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.4
+material = "sin"
+role = "core"
+
+[cladding]
+zmin = 0.0
+zmax = 3.0
+material = "sio2"
+
+[light]
+mode = "path"
+wavelength_nm = 1550
+source = [-66.966, -0.301]
+coupling_gap_um = 0.5
+# light only towards the outputs, not back into the other inputs
+routes = [[[147.393, -40.120], [147.393, -36.139], [147.393, -32.157], [147.393, -28.175], [147.393, -24.193], [147.393, -20.211], [147.393, -16.229], [147.393, -12.247], [147.393, -8.265], [147.393, -4.283], [147.393, -0.301], [147.393, 3.680], [147.393, 7.994], [147.393, 11.976], [147.393, 15.958], [147.393, 19.940], [147.393, 23.922], [147.393, 27.904], [147.393, 31.886], [147.393, 35.867], [147.393, 39.849]]]
+weight = "weight.npz"
+weight_gamma = 0.5
+pulses = 2
+caption = "Light paths drawn with the brightness of the simulated intensity |E|² in the coupled array; the travelling pulses are an illustration."
+
+[camera]
+move = "orbit"
+azimuth = -64
+elevation = 36
+amplitude = 12

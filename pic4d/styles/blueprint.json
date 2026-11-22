@@ -1,0 +1,107 @@
+{
+  "name": "blueprint",
+  "description": "Blueprint: deep-blue ground with a faint grid, pale chip, light in its wavelength colour with a soft glow. A technical-drawing look for talks and slides.",
+  "view_transform": "Standard",
+  "look": "None",
+  "exposure": 0.0,
+  "background": "#0b1f3a",
+  "ground": {
+    "kind": "grid",
+    "color": "#0b1f3a",
+    "line": "#2a4a78",
+    "spacing_frac": 0.04,
+    "roughness": 0.6
+  },
+  "world_strength": 0.35,
+  "lights": [
+    {
+      "type": "SUN",
+      "strength": 1.6,
+      "azimuth": 120,
+      "elevation": 55,
+      "angle": 10,
+      "color": "#ffffff"
+    }
+  ],
+  "bloom": {
+    "threshold": 1.2,
+    "strength": 0.5,
+    "size": 0.55
+  },
+  "dof_fstop": null,
+  "show_cladding": false,
+  "materials": {
+    "si": {
+      "color": "#5d7396",
+      "roughness": 0.45
+    },
+    "sin": {
+      "color": "#6f7a8a",
+      "roughness": 0.45
+    },
+    "sio2": {
+      "color": "#9fb6d8",
+      "roughness": 0.1,
+      "alpha": 0.08
+    },
+    "metal": {
+      "color": "#9aa6b8",
+      "roughness": 0.3,
+      "metallic": 1.0
+    },
+    "au": {
+      "color": "#e3b660",
+      "roughness": 0.3,
+      "metallic": 1.0
+    },
+    "doped_n": {
+      "color": "#b9c7e0",
+      "roughness": 0.45
+    },
+    "doped_p": {
+      "color": "#d8c4cc",
+      "roughness": 0.45
+    },
+    "heater": {
+      "color": "#a8b0bc",
+      "roughness": 0.35,
+      "metallic": 0.8
+    },
+    "polymer": {
+      "color": "#c4cfdd",
+      "roughness": 0.5,
+      "alpha": 0.25
+    },
+    "water": {
+      "color": "#6f9ccc",
+      "roughness": 0.1,
+      "alpha": 0.15
+    },
+    "substrate": {
+      "color": "#163259",
+      "roughness": 0.5
+    },
+    "box": {
+      "color": "#1c3c69",
+      "roughness": 0.5
+    }
+  },
+  "light": {
+    "blend": "add",
+    "core_strength": 2.2,
+    "core_gain": 1.2,
+    "glow_strength": 0.9,
+    "glow_opacity": 1.0,
+    "base": 0.1,
+    "max_luminance": null,
+    "field_gamma": 1.0,
+    "field_negative": 0.35,
+    "field_opacity": 1.0,
+    "pulse_sharpness": 5.0
+  },
+  "overlay": {
+    "ink": "#eaf1fb",
+    "muted": "#9fb3cf",
+    "panel": null
+  }
+}

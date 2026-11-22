@@ -1,0 +1,39 @@
+# pic4D scene file: demo.gds (run make_demo.py first, or use the committed demo.gds)
+name = "Demo: MMI splitter and ring"
+subtitle = "SOI 220 nm · 1550 nm"
+gds = "demo.gds"
+
+[[layer]]           # every layer: GDS (layer, datatype), z range in um, material, role
+gds = [2, 0]
+zmin = 0.0
+zmax = 0.09
+material = "si"
+role = "solid"      # drawn as is
+name = "slab"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"       # guides light: widened if needed, carries the animation
+name = "wire"
+
+[cladding]          # optional translucent cladding (shown by styles that want it)
+zmin = 0.0
+zmax = 2.0
+material = "sio2"
+
+[light]
+mode = "path"       # pulses along the centre lines from the source; "field" uses a phasor file
+wavelength_nm = [1550]
+source = [0.3, 0.0] # input port, um (pic4d ports demo.gds lists the free ends)
+coupling_gap_um = 0.3
+pulses = 3
+caption = "Illustration of the light paths."
+
+[camera]
+move = "orbit"      # orbit, turntable, topdown, flyalong, push, still
+azimuth = -60
+elevation = 35
+amplitude = 14

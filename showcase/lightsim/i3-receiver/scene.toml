@@ -1,0 +1,39 @@
+name = "Free-space receiver"
+subtitle = "SOI 220 nm, 70 nm etch · inverse design · 1550 nm"
+gds = "i3-receiver.gds"
+
+[[layer]]
+gds = [2, 0]
+zmin = 0.0
+zmax = 0.15
+material = "si"
+role = "solid"
+name = "slab"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"
+name = "patch"
+
+[display]
+widen_um = 0.0
+z_scale = 1.0
+
+[substrate]
+material = "box"
+
+[light]
+mode = "field"
+field = "field.npz"
+cycles = 6
+caption = "Simulated field Re E_y at 1550 nm in the cross-section: a beam 10° from vertical is fed into the silicon wire."
+
+[camera]
+move = "orbit"
+azimuth = -96
+elevation = 16
+amplitude = 10
+zoom = 1.25

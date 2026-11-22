@@ -1,0 +1,40 @@
+name = "Grating coupler"
+subtitle = "SOI 220 nm, 70 nm etch · 1550 nm"
+gds = "d3-grating-coupler.gds"
+frame = [-16.0, -6.0, 24.0, 6.0]
+
+[[layer]]
+gds = [2, 0]
+zmin = 0.0
+zmax = 0.15
+material = "si"
+role = "solid"
+name = "slab"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"
+name = "grating"
+
+[display]
+widen_um = 0.0
+z_scale = 1.0
+
+[substrate]
+material = "box"
+
+[light]
+mode = "field"
+field = "field.npz"
+cycles = 6
+caption = "Simulated field Re E_z at 1552.5 nm in the cross-section: the fibre beam couples into the waveguide."
+
+[camera]
+move = "orbit"
+azimuth = -98
+elevation = 16
+amplitude = 10
+zoom = 1.7
