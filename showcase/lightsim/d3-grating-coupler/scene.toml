@@ -21,7 +21,7 @@ name = "grating"
 
 [display]
 widen_um = 0.0
-z_scale = 1.0
+z_scale = 2.0   # heights drawn 2 x, so the 1.7 um of beam above the chip reads
 crop_to_frame = true   # a cut-out of the grating end of the 170 um long coupler
 
 [substrate]
@@ -31,14 +31,19 @@ material = "box"
 mode = "field"
 field = "field.npz"
 cycles = 6
-percentile = 99.0
-caption = "Simulated field Re E_z at 1552.5 nm in the cross-section: the fibre beam couples into the waveguide."
+percentile = 97.0
+# the cross-section stands on the centre line of the cut chip: from 0.6 um into the oxide
+# up to just under the fibre source plane, fading out at its top and sides
+plane_z_um = [-0.6, 1.7]
+plane_fade = [0.06, 0.3, 0.0]
+caption = "Simulated field Re E_z at 1552.5 nm in the cross-section along the centre line (heights drawn 2 x): the fibre beam couples into the waveguide."
 
 [camera]
-move = "orbit"
-azimuth = -96
-elevation = 9
-amplitude = 8
+move = "orbit"   # a flat chip seen from above at three-quarter view, the cut face towards the camera
+azimuth = -58
+elevation = 28
+amplitude = 6
+zoom = 1.1
 
 [style_overrides.white.light]
 field_gamma = 0.5

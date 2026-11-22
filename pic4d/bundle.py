@@ -166,8 +166,13 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
     zmin_all = min(l.zmin for l in layers)
     # display thickness of the die block (scene units), deeper if a vertical field reaches below
     t_disp = sub.get("thickness_frac", 0.035) * SCENE_EXTENT
+    # [light] plane_z_um = [zlo, zhi] keeps only that height range of a vertical field plane
+    plane_z = light.get("plane_z_um") if fld is not None and fld.plane in ("xz", "yz") else None
+    if plane_z is not None and (len(plane_z) != 2 or plane_z[0] >= plane_z[1]):
+        raise ValueError("light.plane_z_um must be [zlo, zhi] with zlo < zhi")
     if fld is not None and fld.plane in ("xz", "yz"):
-        t_disp = max(t_disp, (zmin_all - fld.v[0]) * S * zs * 1.02)
+        zlo = max(float(fld.v[0]), float(plane_z[0])) if plane_z is not None else float(fld.v[0])
+        t_disp = max(t_disp, (zmin_all - zlo) * S * zs * 1.02)
     substrate = {"bounds": sb, "ztop_um": zmin_all, "thickness_scene": t_disp,
                  "material": sub.get("material", "substrate"), "box_um": sub.get("box_um")}
     clad = cfg.get("cladding")
@@ -286,6 +291,20 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
         if disp.get("crop_to_frame"):
             e = lmeta["extent_um"]
             lmeta["plane_bounds_um"] = [max(e[0], crop_box[0]), max(e[1], crop_box[1]), min(e[2], crop_box[2]), min(e[3], crop_box[3])]
+    if plane_z is not None:
+        e = list(lmeta.get("plane_bounds_um") or lmeta["extent_um"])
+        e[1], e[3] = max(e[1], float(plane_z[0])), min(e[3], float(plane_z[1]))
+        if e[1] >= e[3]:
+            raise ValueError("light.plane_z_um leaves nothing of the field plane")
+        lmeta["plane_bounds_um"] = e
+    if mode in ("field", "intensity"):
+        # [light] plane_fade = f or [sides, top, bottom]: the drawn plane fades out over that
+        # fraction of its size towards its edges (a soft border instead of a hard rectangle)
+        fd = light.get("plane_fade", 0.0)
+        fd = [float(fd)] * 3 if not isinstance(fd, list) else [float(v) for v in fd]
+        if len(fd) != 3 or any(v < 0 or v > 0.5 for v in fd):
+            raise ValueError("light.plane_fade must be a number or [sides, top, bottom], each 0 to 0.5")
+        lmeta["plane_fade"] = fd
     if lmeta.get("plane_bounds_um"):  # and no wider than the cut-out die
         e = lmeta["plane_bounds_um"]
         e[0], e[2] = max(e[0], sb[0]), min(e[2], sb[2])

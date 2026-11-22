@@ -20,7 +20,7 @@ name = "patch"
 
 [display]
 widen_um = 0.0
-z_scale = 1.0
+z_scale = 1.5   # heights drawn 1.5 x, so the 1.6 um of field above the chip reads
 
 [substrate]
 material = "box"
@@ -29,14 +29,18 @@ material = "box"
 mode = "field"
 field = "field.npz"
 cycles = 6
-percentile = 99.3
-caption = "Simulated field Re E_y at 1550 nm in the cross-section: a beam 10° from vertical is fed into the silicon wire."
+percentile = 98.0
+# the cross-section stands on the centre line of the cut chip, fading out at its top and sides
+plane_z_um = [-0.6, 1.6]
+plane_fade = [0.06, 0.3, 0.0]
+caption = "Simulated field Re E_y at 1550 nm in the cross-section along the centre line (heights drawn 1.5 x): a beam 10° from vertical is fed into the silicon wire."
 
 [camera]
-move = "orbit"
-azimuth = -96
-elevation = 16
-amplitude = 10
+move = "orbit"   # a flat chip seen from above at three-quarter view, the cut face towards the camera
+azimuth = -62
+elevation = 38
+amplitude = 8
+zoom = 1.1
 
 [style_overrides.white.light]
 field_gamma = 0.5

@@ -132,7 +132,7 @@ inputs lit at once: `source = [[x1, y1], [x2, y2]]`.
 | `[[layer]]` | `gds`, `zmin`, `zmax`, `material`, `role` (`core`, `solid`, `clad`), `name`, `opacity` |
 | `[cladding]`, `[substrate]` | translucent cladding slab; die block (`material`, `margin_um`, `thickness_frac`) |
 | `[display]` | `widen_um`, `z_scale`, `relief`, `crop_to_frame` (cut the die out at the frame) |
-| `[light]` | `mode` (`path`, `field`, `intensity`), `wavelength_nm`, `source`, `routes`, `coupling_gap_um`, `pulses`, `pulses_per_loop`, `weight`, `field`, `cycles`, `sequence`, `percentile`, `caption` |
+| `[light]` | `mode` (`path`, `field`, `intensity`), `wavelength_nm`, `source`, `routes`, `coupling_gap_um`, `pulses`, `pulses_per_loop`, `weight`, `field`, `cycles`, `sequence`, `percentile`, `caption`, `plane_z_um`, `plane_fade` |
 | `[camera]` | `move`, `azimuth`, `elevation`, `amplitude`, `lens_mm`, `zoom`, `margin`, `target_um` |
 | `[style_overrides.<style>.light]` | per-scene tweaks of a style, e.g. `field_gamma = 0.5` |
 
@@ -156,6 +156,13 @@ Entries of different wavelengths are shown together in their colours; with
 `sequence = true` they are shown one after the other with cross-fades (loops). An
 intensity map |E|² has lost its phase and cannot travel: use it as `weight` (brightness of
 a path-driven animation) or with `mode = "intensity"`.
+
+`[light] plane_z_um = [zlo, zhi]` keeps only that height range of a vertical (`xz`, `yz`)
+field plane, so the die block need not reach as deep as the simulation does;
+`plane_fade = f` or `[sides, top, bottom]` fades a field plane out over that fraction of its
+size towards its edges instead of ending it in a hard rectangle (it only dims the simulated
+field). The `d3` and `i3` scenes use both to stand their cross-section on the centre line of
+a flat, cut chip seen from above.
 
 ### Scale and legibility
 

@@ -394,6 +394,32 @@ class _LightGraph:
         b = _math(n, l, "MULTIPLY", r, mod)
         return self._combine([(b, self._display_colour(L["colour_linear"][0]))])
 
+    def fade(self):
+        """Soft border of a light plane: 1 inside, falling smoothly to 0 at its edges over
+        the fractions ``plane_fade = [sides, top, bottom]`` of its size (None if no fade)."""
+        n, l, L = self.n, self.l, self.meta["light"]
+        fs, ft, fb = L.get("plane_fade") or (0.0, 0.0, 0.0)
+        if fs <= 0 and ft <= 0 and fb <= 0:
+            return None
+        axes = L.get("plane", "xy")
+        sep = n.new("ShaderNodeSeparateXYZ")
+        l.new(self._uv(L.get("plane_bounds_um") or L["extent_um"], axes), sep.inputs[0])
+        u, v = sep.outputs[0], sep.outputs[1]
+
+        def ramp(dist, frac):
+            f = _math(n, l, "DIVIDE", dist, frac)
+            f = _math(n, l, "MINIMUM", _math(n, l, "MAXIMUM", f, 0.0), 1.0)
+            return _math(n, l, "MULTIPLY", _math(n, l, "MULTIPLY", f, f),
+                         _math(n, l, "SUBTRACT", 3.0, _math(n, l, "MULTIPLY", f, 2.0)))  # smoothstep
+
+        out = None
+        for dist, frac in ((_math(n, l, "MINIMUM", u, _math(n, l, "SUBTRACT", 1.0, u)), fs),
+                           (_math(n, l, "SUBTRACT", 1.0, v), ft), (v, fb)):
+            if frac > 0:
+                r = ramp(dist, frac)
+                out = r if out is None else _math(n, l, "MULTIPLY", out, r)
+        return out
+
     def _display_colour(self, c):
         ml = self.style["light"].get("max_luminance")
         return colors.limit_luminance(c, ml) if ml else tuple(c)
@@ -409,6 +435,10 @@ def light_material(name, kind, base_spec, meta, style, units, clock, imgs, glow=
     lg = _LightGraph(nodes, links, meta, style, units, clock)
     col, amt = {"path": lambda: lg.path(imgs, glow=glow), "field": lambda: lg.field(imgs),
                 "intensity": lambda: lg.intensity(imgs)}[kind]()
+    if glow and kind in ("field", "intensity"):
+        fd = lg.fade()
+        if fd is not None:
+            amt = _math(nodes, links, "MULTIPLY", amt, fd)
     em = nodes.new("ShaderNodeEmission")
     links.new(col, em.inputs["Color"])
     add = st.get("blend", "over") == "add"
