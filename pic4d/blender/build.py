@@ -678,6 +678,10 @@ def build_scene(bundle, style="white", *, width=1920, height=1080, fps=30, secon
             sc.collection.objects.link(ob)
             me.materials.append(gm)
 
+    for ob in bpy.data.objects:  # light planes glow; they cast no shadows
+        if ob.name.startswith((f"{PREFIX}_glow", f"{PREFIX}_field")):
+            ob.visible_shadow = False
+
     # --- frames, clock keys
     n_frames = int(round(seconds * fps))
     sc.frame_start, sc.frame_end = 1, n_frames
