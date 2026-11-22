@@ -29,6 +29,7 @@ material = "box"
 mode = "field"
 field = "field.npz"
 cycles = 6
+percentile = 99.3
 caption = "Simulated field Re E_y at 1550 nm in the cross-section: a beam 10° from vertical is fed into the silicon wire."
 
 [camera]
@@ -37,3 +38,7 @@ azimuth = -96
 elevation = 16
 amplitude = 10
 zoom = 1.25
+
+[style_overrides.white.light]
+field_gamma = 0.5
+field_opacity = 1.0

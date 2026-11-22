@@ -273,6 +273,7 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
         "light": lmeta,
         "camera": cam,
         "legibility": leg,
+        "style_overrides": cfg.get("style_overrides", {}),
         "main_path_um": None if main_path is None else main_path[:: max(1, len(main_path) // 600)].round(4).tolist(),
         "notes": notes,
         "source_gds": Path(cfg["gds"]).name,

@@ -588,6 +588,12 @@ def build_scene(bundle, style="white", *, width=1920, height=1080, fps=30, secon
     bundle = Path(bundle)
     meta = json.loads((bundle / "scene.json").read_text())
     st = load_style(style)
+    ov = meta.get("style_overrides", {}).get(st["name"], {})
+    if ov:  # per-scene tweaks of a style, e.g. [style_overrides.white.light] field_gamma = 0.5
+        st = {**st, **{k: v for k, v in ov.items() if not isinstance(v, dict)}}
+        for k, v in ov.items():
+            if isinstance(v, dict):
+                st[k] = {**st.get(k, {}), **v}
     sc = _clear_scene(clear)
     U = _U(meta)
     E = meta["units"]["scene_extent"]

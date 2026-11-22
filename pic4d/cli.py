@@ -64,7 +64,7 @@ def cmd_render(a):
         lab = None
         if a.label:
             ov = st.get("overlay", {})
-            lab = Label(meta["name"], meta.get("subtitle", ""), swatches=meta["light"].get("colour_hex", []),
+            lab = Label(meta["name"], meta.get("subtitle", ""), swatches=list(dict.fromkeys(meta["light"].get("colour_hex", []))),
                         ink=ov.get("ink", "#f2f4f8"), muted=ov.get("muted", "#9aa3b2"), font=ov.get("font"))
         print(json.dumps(encode(out / "frames", a.mp4, fps=a.fps, label=lab, max_mb=a.max_mb)))
 

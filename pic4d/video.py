@@ -39,7 +39,7 @@ _ASCII_CACHE: dict = {}
 
 
 def ascii_filter(img: Image.Image, cols: int = 200, charset: str = " .'`^,:;-~+=*!?%#&$@", boost: float = 1.6,
-                 background=None, font=None) -> Image.Image:
+                 background=None, font=None, floor_percentile: float = 55.0) -> Image.Image:
     """Redraw a frame as coloured monospace characters (the 'ASCII' look).
 
     The frame is cut into `cols` columns of character cells; each cell gets the
@@ -69,7 +69,8 @@ def ascii_filter(img: Image.Image, cols: int = 200, charset: str = " .'`^,:;-~+=
     bg = np.array(_rgb(background), dtype=np.float32) / 255.0 if background else np.median(small.reshape(-1, 3), axis=0)
     w = np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
     lum = np.clip(small @ w - bg @ w, 0, None)
-    lum = np.clip(lum / max(float(np.percentile(lum, 99.7)), 1e-3), 0, 1) ** 0.8
+    floor = float(np.percentile(lum, floor_percentile))  # dim ground and haze become blank cells
+    lum = np.clip((lum - floor) / max(float(np.percentile(lum, 99.7)) - floor, 1e-3), 0, 1) ** 0.8
     idx = np.searchsorted(cover, lum).clip(0, len(cover) - 1)
     peak = np.maximum(small.max(axis=-1, keepdims=True), 1e-3)
     col = np.clip(small / peak * np.clip(lum[..., None] * boost + 0.2, 0, 1), 0, 1)
