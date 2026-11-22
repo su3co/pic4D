@@ -50,6 +50,17 @@ def _flatten(polys):
     return np.concatenate(polys).astype(np.float64), off
 
 
+def _clip_box(polys, box):
+    """Keep the part of the polygons inside box = (x0, y0, x1, y1)."""
+    import gdstk
+
+    if not polys:
+        return []
+    r = gdstk.rectangle(box[:2], box[2:])
+    out = gdstk.boolean([gdstk.Polygon(p) for p in polys], r, "and", precision=1e-4)
+    return [np.asarray(p.points) for p in out]
+
+
 def _clip_half(polys, y0):
     """Keep the part of the polygons with y >= y0 (cut-away for a vertical field plane)."""
     import gdstk
@@ -125,12 +136,18 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
             section_y = fld.offset_um
 
     # --- geometry -----------------------------------------------------------------
+    # [display] crop_to_frame = true cuts the die out at the framed region (a sample piece),
+    # so a long chip does not run off the edge of the picture
+    cm = 0.04 * extent
+    crop_box = (frame[0] - cm, frame[1] - cm, frame[2] + cm, frame[3] + cm)
     geo = {}
     layer_meta = []
     for i, l in enumerate(layers):
         polys = lay.merged(l.gds, widen_um=leg["widen_um"] if l.role == "core" else 0.0)
         if section_y is not None:
             polys = _clip_half(polys, section_y)
+        if disp.get("crop_to_frame"):
+            polys = _clip_box(polys, crop_box)
         pts, off = _flatten(polys)
         geo[f"L{i}_pts"], geo[f"L{i}_off"] = pts, off
         layer_meta.append({"key": f"L{i}", "gds": list(l.gds), "zmin": l.zmin, "zmax": l.zmax,
@@ -142,6 +159,8 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
     margin = sub.get("margin_um", 0.04 * extent)
     sb = [max(lb[0], frame[0] - 0.6 * extent) - margin, max(lb[1], frame[1] - 0.6 * extent) - margin,
           min(lb[2], frame[2] + 0.6 * extent) + margin, min(lb[3], frame[3] + 0.6 * extent) + margin]
+    if disp.get("crop_to_frame"):
+        sb = [max(sb[0], crop_box[0]), max(sb[1], crop_box[1]), min(sb[2], crop_box[2]), min(sb[3], crop_box[3])]
     if section_y is not None:
         sb[1] = section_y
     zmin_all = min(l.zmin for l in layers)
@@ -242,6 +261,14 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
                       "cycles": [int(round(cyc * lam0 / w)) for w in wl], "sequence": bool(light.get("sequence", False)),
                       "crossfade": float(light.get("crossfade", 0.25)), "labels": list(f.labels),
                       "section": section_y is not None})
+        if disp.get("crop_to_frame"):  # draw the field plane only over the cut-out
+            e = list(f.extent())
+            ax = {"xy": (0, 1), "xz": (0, None), "yz": (1, None)}[f.plane]
+            for k, a in enumerate(ax):
+                if a is not None:
+                    e[k] = max(e[k], crop_box[a])
+                    e[k + 2] = min(e[k + 2], crop_box[a + 2])
+            lmeta["plane_bounds_um"] = e
     elif mode == "intensity":
         # a simulated |E|^2 map, drawn as a glow whose brightness is modulated in time;
         # the map is simulated, the modulation is only an illustration
@@ -256,6 +283,14 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
         lmeta.update({"plane": "xy", "offset_um": float(light.get("offset_um", lmeta["z_top_um"])),
                       "extent_um": [float(u[0]), float(v[0]), float(u[-1]), float(v[-1])],
                       "files": ["light_intensity.npy"], "beats": int(light.get("beats", 3))})
+        if disp.get("crop_to_frame"):
+            e = lmeta["extent_um"]
+            lmeta["plane_bounds_um"] = [max(e[0], crop_box[0]), max(e[1], crop_box[1]), min(e[2], crop_box[2]), min(e[3], crop_box[3])]
+    if lmeta.get("plane_bounds_um"):  # and no wider than the cut-out die
+        e = lmeta["plane_bounds_um"]
+        e[0], e[2] = max(e[0], sb[0]), min(e[2], sb[2])
+        if lmeta.get("plane", "xy") == "xy":
+            e[1], e[3] = max(e[1], sb[1]), min(e[3], sb[3])
     lmeta["base"] = light.get("base")
 
     cam = dict(cfg.get("camera", {}))
@@ -266,6 +301,7 @@ def prepare(scene_file: str | Path, out_dir: str | Path, *, layout: Layout | Non
         "caption": light.get("caption", ""),
         "units": {"S": S, "origin_um": [cx, cy], "z_scale": zs, "scene_extent": SCENE_EXTENT},
         "frame_um": list(frame),
+        "frame_explicit": "frame" in cfg and not disp.get("crop_to_frame"),
         "layout_bounds_um": list(lb),
         "layers": layer_meta,
         "substrate": substrate,

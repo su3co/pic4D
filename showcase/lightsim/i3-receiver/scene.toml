@@ -37,7 +37,6 @@ move = "orbit"
 azimuth = -96
 elevation = 16
 amplitude = 10
-zoom = 1.25
 
 [style_overrides.white.light]
 field_gamma = 0.5

@@ -663,7 +663,7 @@ def build_scene(bundle, style="white", *, width=1920, height=1080, fps=30, secon
         gm = light_material(f"{PREFIX}_glow", "path", None, meta, st, U, clock, imgs, glow=True)
         box(f"{PREFIX}_glow", float(U.x(tb[0])), float(U.y(tb[1])), float(U.x(tb[2])), float(U.y(tb[3])), zg, zg + 1e-5, gm)
     elif L["mode"] in ("field", "intensity"):
-        a0, b0, a1, b1 = L["extent_um"]
+        a0, b0, a1, b1 = L.get("plane_bounds_um") or L["extent_um"]
         gm = light_material(f"{PREFIX}_field", L["mode"], None, meta, st, U, clock, imgs, glow=True)
         if L["plane"] == "xy":
             zf = max(top_core, float(U.z(L["offset_um"]))) + 0.002 * E
@@ -695,11 +695,20 @@ def build_scene(bundle, style="white", *, width=1920, height=1080, fps=30, secon
     # frame the die block (where it lies inside the framed region) from its bottom to the top layer
     fx0, fy0, fx1, fy1 = meta["frame_um"]
     sbx = sb["bounds"]
-    mx = 0.02 * (fx1 - fx0 + fy1 - fy0)
-    bx0, by0 = max(sbx[0], fx0 - mx), max(sbx[1], fy0 - mx)
-    bx1, by1 = min(sbx[2], fx1 + mx), min(sbx[3], fy1 + mx)
+    if meta.get("frame_explicit", True):
+        mx = 0.02 * (fx1 - fx0 + fy1 - fy0)
+        bx0, by0 = max(sbx[0], fx0 - mx), max(sbx[1], fy0 - mx)
+        bx1, by1 = min(sbx[2], fx1 + mx), min(sbx[3], fy1 + mx)
+    else:  # the whole die
+        bx0, by0, bx1, by1 = sbx
     ztop_all = max(top_core, max(float(U.z(lm["zmax"])) for lm in meta["layers"]))
     corners = np.array([[float(U.x(x)), float(U.y(y)), z] for x in (bx0, bx1) for y in (by0, by1) for z in (zbot, ztop_all)])
+    if L["mode"] in ("field", "intensity") and L.get("plane") in ("xz", "yz"):
+        # a vertical field plane rises above the chip: keep all of it in frame
+        a0, b0, a1, b1 = L.get("plane_bounds_um") or L["extent_um"]
+        yf = float(U.y(L["offset_um"]))
+        extra = np.array([[float(U.x(a)), yf, float(U.z(b))] for a in (a0, a1) for b in (b0, b1)])
+        corners = np.vstack([corners, extra])
     tgt = np.array(cam_cfg.get("target", [0.0, 0.0, 0.0]), dtype=float)
     if "target_um" in cam_cfg:
         tx, ty = cam_cfg["target_um"]

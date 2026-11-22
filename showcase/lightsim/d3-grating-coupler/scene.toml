@@ -22,6 +22,7 @@ name = "grating"
 [display]
 widen_um = 0.0
 z_scale = 1.0
+crop_to_frame = true   # a cut-out of the grating end of the 170 um long coupler
 
 [substrate]
 material = "box"
@@ -38,7 +39,6 @@ move = "orbit"
 azimuth = -96
 elevation = 9
 amplitude = 8
-zoom = 1.1
 
 [style_overrides.white.light]
 field_gamma = 0.5

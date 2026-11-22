@@ -4,7 +4,11 @@
 rendered film of light travelling through it: the simulated wave where a field exists,
 pulses along the waveguides where it does not, coloured by wavelength.
 
-<!-- SHOWREEL -->
+<p align="center">
+  <a href="https://github.com/su3co/pic4D/releases/download/v0.1.0/pic4D-showreel.mp4"><img src="docs/showreel.webp" width="100%" alt="pic4D showreel: twelve photonic chips with light travelling through them"></a>
+  <br>
+  <a href="https://github.com/su3co/pic4D/releases/download/v0.1.0/pic4D-showreel.mp4"><b>Watch the HD showreel</b></a> (1080p MP4) · twelve example chips of <a href="https://su3labs.com/lightsim/">lightsim</a>, one after the other
+</p>
 
 ```sh
 pic4d render chip.toml -o out/ --style dark --size 1920x1080 --seconds 7 --mp4 chip.mp4 --label
@@ -25,7 +29,7 @@ pic4d render chip.toml -o out/ --style dark --size 1920x1080 --seconds 7 --mp4 c
 
 pic4D has two halves. The **prepare** step (GDS import, light paths, field textures) is
 plain Python; the **render** step runs inside [Blender](https://www.blender.org) 4.2 or later
-(tested with 5.2) and needs nothing but the numpy Blender ships with.
+(tested with 5.1 and 5.2) and needs nothing but the numpy Blender ships with.
 
 ```sh
 git clone https://github.com/su3co/pic4D && cd pic4D
@@ -84,6 +88,20 @@ keeps the animated scene; installing the `pic4d` folder as a Blender add-on adds
 `routes` (one list of output points per wavelength) a colour is drawn only on the guides
 that lead to its outputs, so a demultiplexer separates its channels on screen. Several
 inputs lit at once: `source = [[x1, y1], [x2, y2]]`.
+
+### Scene file reference
+
+| key | meaning |
+|---|---|
+| `name`, `subtitle` | label text (device name; platform and wavelength) |
+| `gds`, `cell` | layout file and cell (default: the cell named like the file, else the largest top cell) |
+| `frame` | `[xmin, ymin, xmax, ymax]` um: frame this region instead of the whole layout |
+| `[[layer]]` | `gds`, `zmin`, `zmax`, `material`, `role` (`core`, `solid`, `clad`), `name`, `opacity` |
+| `[cladding]`, `[substrate]` | translucent cladding slab; die block (`material`, `margin_um`, `thickness_frac`) |
+| `[display]` | `widen_um`, `z_scale`, `relief`, `crop_to_frame` (cut the die out at the frame) |
+| `[light]` | `mode` (`path`, `field`, `intensity`), `wavelength_nm`, `source`, `routes`, `coupling_gap_um`, `pulses`, `pulses_per_loop`, `weight`, `field`, `cycles`, `sequence`, `percentile`, `caption` |
+| `[camera]` | `move`, `azimuth`, `elevation`, `amplitude`, `lens_mm`, `zoom`, `margin`, `target_um` |
+| `[style_overrides.<style>.light]` | per-scene tweaks of a style, e.g. `field_gamma = 0.5` |
 
 ### Simulated fields
 

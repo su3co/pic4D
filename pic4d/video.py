@@ -225,16 +225,23 @@ def showreel(clips, out, *, title: str | None = None, fade=0.5, crf=21, fps=30, 
     return {"path": str(out), "seconds": round(t, 2), "mb": round(out.stat().st_size / 1e6, 2)}
 
 
-def preview(video, out, *, width=640, fps=12, start=0.0, seconds=None, colors=128) -> dict:
+def preview(video, out, *, width=640, fps=12, start=0.0, seconds=None, colors=128, quality=60) -> dict:
     """Small animated preview (GIF or WebP by extension) for places without video."""
     out = Path(out)
     trim = ["-ss", str(start)] + (["-t", str(seconds)] if seconds else [])
     vf = f"fps={fps},scale={width}:-2:flags=lanczos"
-    if out.suffix.lower() == ".webp":
-        cmd = [_ffmpeg(), "-y", "-loglevel", "error", *trim, "-i", str(video), "-vf", vf, "-c:v", "libwebp_anim",
-               "-lossless", "0", "-q:v", "60", "-loop", "0", "-an", str(out)]
-    else:
-        vf += f",split[a][b];[a]palettegen=max_colors={colors}:stats_mode=diff[p];[b][p]paletteuse=dither=sierra2_4a:diff_mode=rectangle"
-        cmd = [_ffmpeg(), "-y", "-loglevel", "error", *trim, "-i", str(video), "-vf", vf, "-loop", "0", str(out)]
+    if out.suffix.lower() == ".webp":  # through Pillow, so ffmpeg needs no WebP encoder
+        info = probe(video)["streams"][0]
+        w0, h0 = int(info["width"]), int(info["height"])
+        W, H = width, int(round(h0 * width / w0 / 2)) * 2
+        cmd = [_ffmpeg(), "-loglevel", "error", *trim, "-i", str(video), "-vf", f"fps={fps},scale={W}:{H}:flags=lanczos",
+               "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]
+        raw = subprocess.run(cmd, check=True, capture_output=True).stdout
+        n = len(raw) // (W * H * 3)
+        frames = [Image.frombytes("RGB", (W, H), raw[i * W * H * 3:(i + 1) * W * H * 3]) for i in range(n)]
+        frames[0].save(out, save_all=True, append_images=frames[1:], duration=int(1000 / fps), loop=0, quality=quality, method=4)
+        return {"path": str(out), "mb": round(out.stat().st_size / 1e6, 2)}
+    vf += f",split[a][b];[a]palettegen=max_colors={colors}:stats_mode=diff[p];[b][p]paletteuse=dither=sierra2_4a:diff_mode=rectangle"
+    cmd = [_ffmpeg(), "-y", "-loglevel", "error", *trim, "-i", str(video), "-vf", vf, "-loop", "0", str(out)]
     subprocess.run(cmd, check=True)
     return {"path": str(out), "mb": round(out.stat().st_size / 1e6, 2)}

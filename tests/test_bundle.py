@@ -30,3 +30,17 @@ def test_styles_load():
     for n in names:
         st = load_style(n)
         assert "materials" in st and "light" in st and st["background"].startswith("#")
+
+
+def test_crop_to_frame(tmp_path):
+    pytest.importorskip("skimage")
+    from pic4d.bundle import load_scene
+
+    cfg = load_scene(DEMO)
+    cfg["frame"] = [0.0, -5.0, 40.0, 5.0]
+    cfg.setdefault("display", {})["crop_to_frame"] = True
+    m = prepare(cfg, tmp_path)
+    sb = m["substrate"]["bounds"]
+    assert sb[2] < 50 and sb[0] >= -2  # the die is cut out around the frame
+    g = np.load(tmp_path / "geometry.npz")
+    assert g["L1_pts"][:, 0].max() <= 42.0
