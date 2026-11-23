@@ -101,6 +101,14 @@ def q3(src):
     return _weight(HERE / "q3-quantum-walk" / "weight.npz", f["x_um"] + Q3_ARRAY_X_UM, f["y_um"], I)
 
 
+def q2(src):
+    # |E|^2 in the SiN core plane of the whole fusion circuit (rail a1 excited); the
+    # simulation uses the layout's coordinates
+    f = np.load(src / "results" / "sin" / "field.npz")
+    I = np.asarray(f["intensity"], dtype=np.float32)
+    return _weight(HERE / "q2-fusion" / "weight.npz", f["x_um"], f["y_um"], I)
+
+
 def s2(src):
     e2 = np.load(src / "results" / "field.npy")
     a = np.load(src / "results" / "field_axes.npz")
@@ -120,6 +128,6 @@ def s3(src):
 if __name__ == "__main__":
     root = Path(sys.argv[1])
     for slug, fn in (("d3-grating-coupler", d3), ("i1-matmul", i1), ("i2-duplexer", i2), ("i3-receiver", i3), ("i4-matmul-scaling", i4),
-                     ("q3-quantum-walk", q3), ("s2-ring-sensor", s2), ("s3-sers", s3)):
+                     ("q2-fusion", q2), ("q3-quantum-walk", q3), ("s2-ring-sensor", s2), ("s3-sers", s3)):
         p = fn(root / slug)
         print(f"{slug:20s} -> {Path(p).relative_to(HERE)}  {Path(p).stat().st_size / 1e3:.0f} kB")

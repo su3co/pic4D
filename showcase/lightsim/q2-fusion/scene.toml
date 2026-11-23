@@ -1,19 +1,12 @@
 name = "Type-II fusion circuit"
-subtitle = "Si 220 nm · 1550 nm"
+subtitle = "SiN 400 nm in SiO2 · 1550 nm"
 gds = "q2-fusion.gds"
 
 [[layer]]
-gds = [2, 0]
+gds = [34, 0]
 zmin = 0.0
-zmax = 0.15
-material = "si"
-role = "solid"
-
-[[layer]]
-gds = [1, 0]
-zmin = 0.0
-zmax = 0.22
-material = "si"
+zmax = 0.4
+material = "sin"
 role = "core"
 
 [cladding]
@@ -21,16 +14,22 @@ zmin = 0.0
 zmax = 2.0
 material = "sio2"
 
+[substrate]
+material = "box"
+
 [light]
-mode = "path"
+mode = "intensity"
 wavelength_nm = 1550
-source = [[-13.546, -15.121], [-13.546, -5.021], [-13.546, 4.912], [-13.546, 14.846]]
-coupling_gap_um = 0.3
-pulses = 2
-caption = "Illustration of the light paths (not a simulation): two dual-rail qubits meet at a crossing and two 50:50 couplers."
+weight = "weight.npz"
+weight_gamma = 0.4
+percentile = 98.0
+offset_um = 0.4
+beats = 3
+plane_fade = [0.03, 0.0, 0.0]
+caption = "Simulated intensity |E|² at 1550 nm in the SiN core plane of the whole fusion circuit, rail a1 excited: through the crossing into the lower 50:50 coupler; its pulsing brightness is only an illustration."
 
 [camera]
 move = "orbit"
 azimuth = -60
-elevation = 36
-amplitude = 12
+elevation = 32
+amplitude = 8

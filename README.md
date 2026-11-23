@@ -205,7 +205,7 @@ simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's
 | example | chip | wavelength | light |
 |---|---|---|---|
 | [`q1-gbs`](https://developer.su3labs.com/lightsim/examples/q1-gbs/) | Gaussian boson sampler | 1550 nm | path-driven |
-| [`q2-fusion`](https://developer.su3labs.com/lightsim/examples/q2-fusion/) | Type-II fusion circuit | 1550 nm | path-driven |
+| [`q2-fusion`](https://developer.su3labs.com/lightsim/examples/q2-fusion/) | Type-II fusion circuit | 1550 nm | simulated \|E\|², pulsing illustrative |
 | [`q3-quantum-walk`](https://developer.su3labs.com/lightsim/examples/q3-quantum-walk/) | Quantum walk in 21 coupled waveguides | 1550 nm | path-driven, brightness from simulated \|E\|² |
 | [`s1-raman`](https://developer.su3labs.com/lightsim/examples/s1-raman/) | Waveguide-enhanced Raman chip | 785 nm | path-driven |
 | [`s2-ring-sensor`](https://developer.su3labs.com/lightsim/examples/s2-ring-sensor/) | Racetrack ring sensor | 1550 nm | path-driven, brightness from simulated \|E\|² |
@@ -221,7 +221,7 @@ simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's
 *Field-driven* clips show the simulated phasor (Re E e^(−iωt)) from the lightsim run; *path-driven* clips are
 illustrations of where light goes, computed from the layout alone, and are captioned as such. Where the
 example has a simulated intensity map, it sets the brightness of the guides (q3, s2) or is shown directly
-(s3). Scales: wires on the large dies are widened and the films drawn thicker (up to 17 × on the 2 mm Raman chip); every bundle's
+(q2, s3). Scales: wires on the large dies are widened and the films drawn thicker (up to 17 × on the 2 mm Raman chip); every bundle's
 `scene.json` says by how much. The d1 clip frames the first 250 µm of the 3.1 mm modulator; d3 is a cut-out of
 the grating end of the coupler.
 
