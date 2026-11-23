@@ -34,3 +34,4 @@ move = "orbit"
 azimuth = -62
 elevation = 40
 amplitude = 14
+zoom = 1.12   # closer on the antenna; the slab stays in frame

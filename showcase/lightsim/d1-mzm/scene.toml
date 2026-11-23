@@ -47,3 +47,18 @@ move = "orbit"
 azimuth = -125
 elevation = 26
 amplitude = 10
+zoom = 1.25   # pushed in on the splitter and the start of the arms
+
+# brighter light: the clip was dark and low in contrast in both themes
+[style_overrides.dark]
+exposure = 0.35
+
+[style_overrides.dark.light]
+core_strength = 4.5
+glow_strength = 1.5
+base = 0.14
+
+[style_overrides.white.light]
+core_gain = 3.0
+glow_opacity = 0.9
+base = 0.2

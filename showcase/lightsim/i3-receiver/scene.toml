@@ -41,6 +41,7 @@ azimuth = -62
 elevation = 38
 amplitude = 8
 zoom = 1.1
+target_um = [-1.5, 1.2]   # the middle of the cut die
 
 [style_overrides.white.light]
 field_gamma = 0.5
