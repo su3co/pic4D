@@ -1,33 +1,40 @@
 name = "Quantum walk in 21 coupled waveguides"
-subtitle = "SiN 400 nm · 1550 nm"
+subtitle = "SiOxNy in SiO2 · 804 nm"
 gds = "q3-quantum-walk.gds"
+# a cut-out of the 5 mm chip: the end of the fan-in and the 350 um of coupled array
+# that were simulated in 3-D (the array continues to 700 um, the fans to the facets)
+frame = [2821.0, -38.0, 3221.0, 38.0]
 
 [[layer]]
 gds = [1, 0]
 zmin = 0.0
-zmax = 0.4
-material = "sin"
+zmax = 0.566
+material = "sin"   # drawn with the dielectric-core look of the renderer (SiOxNy)
 role = "core"
 
-[cladding]
-zmin = 0.0
-zmax = 3.0
-material = "sio2"
+[display]
+widen_um = 0.6   # cores drawn 1.17 um wide instead of 0.57 um so that they read at this size
+z_scale = 3.0    # heights drawn 3 x
+crop_to_frame = true
+
+[substrate]
+material = "box"
 
 [light]
-mode = "path"
-wavelength_nm = 1550
-source = [-66.966, -0.301]
-coupling_gap_um = 0.5
-# light only towards the outputs, not back into the other inputs
-routes = [[[147.393, -40.120], [147.393, -36.139], [147.393, -32.157], [147.393, -28.175], [147.393, -24.193], [147.393, -20.211], [147.393, -16.229], [147.393, -12.247], [147.393, -8.265], [147.393, -4.283], [147.393, -0.301], [147.393, 3.680], [147.393, 7.994], [147.393, 11.976], [147.393, 15.958], [147.393, 19.940], [147.393, 23.922], [147.393, 27.904], [147.393, 31.886], [147.393, 35.867], [147.393, 39.849]]]
+mode = "intensity"
+wavelength_nm = 804
 weight = "weight.npz"
-weight_gamma = 0.5
-pulses = 2
-caption = "Light paths drawn with the brightness of the simulated intensity |E|² in the coupled array; the travelling pulses are an illustration."
+weight_gamma = 0.3
+percentile = 98.0
+offset_um = 0.566
+beats = 3
+plane_fade = [0.03, 0.0, 0.0]
+caption = "Simulated intensity |E|² in the core plane of the 350 µm array at 804 nm, the central guide excited; its pulsing brightness is only an illustration."
 
 [camera]
 move = "orbit"
-azimuth = -64
-elevation = 36
-amplitude = 12
+azimuth = -60
+elevation = 32
+amplitude = 8
+zoom = 1.05
+target_um = [3021.0, 0.0]

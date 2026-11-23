@@ -5,8 +5,8 @@
 Reads each example's ``results/`` and writes, next to the scene files here:
 
 * ``<slug>/field.npz``  complex phasors in the pic4D field format (d3, i1, i2, i3);
-* ``<slug>/weight.npz`` intensity maps |E|^2 (u, v, I) used only to weight the
-  brightness of a path-driven or intensity animation (q3, s2, s3).
+* ``<slug>/weight.npz`` intensity maps |E|^2 (u, v, I): drawn directly in an intensity
+  animation (q3, s3) or used to weight the brightness of a path-driven one (s2).
 
 The example reports, with the solver set-ups, are at https://su3labs.com/lightsim/ .
 """
@@ -71,10 +71,16 @@ def _weight(path, u, v, I):
     return path
 
 
+#: start of the coupled region in the q3 layout: 50 um facet lead + 2811 um fan-in
+Q3_ARRAY_X_UM = 2861.0
+
+
 def q3(src):
-    f = np.load(src / "results" / "field_3d.npz")
+    # |E|^2 in the core plane of the simulated 350 um array, central guide excited; the
+    # simulation starts its x axis at the start of the coupled region
+    f = np.load(src / "results" / "field_walk.npz")
     I = np.asarray(f["intensity"], dtype=np.float32)
-    return _weight(HERE / "q3-quantum-walk" / "weight.npz", f["x_um"], f["y_um"], I)
+    return _weight(HERE / "q3-quantum-walk" / "weight.npz", f["x_um"] + Q3_ARRAY_X_UM, f["y_um"], I)
 
 
 def s2(src):
