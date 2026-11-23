@@ -65,6 +65,24 @@ def i3(src):
                       float(f["wavelength"]) * 1e3, plane="xz", offset_um=0.0, half=True)
 
 
+def i4(src):
+    f = np.load(src / "results" / "field.npz")
+    ey = f["ey"]
+    n = ey.shape[0]
+    # the target of the design: the Haar-random unitary of design.target(n) (seed 2026 + n)
+    rng = np.random.default_rng(2026 + n)
+    z = (rng.standard_normal((n, n)) + 1j * rng.standard_normal((n, n))) / np.sqrt(2)
+    q, r = np.linalg.qr(z)
+    d = np.diag(r)
+    T = q * (d / np.abs(d))[None, :]
+    outs = [0, n // 3, 2 * n // 3, n - 1]
+    # the inputs x = T^dagger e_k send all the light to output k (superposition of the n single-input fields)
+    E = np.stack([np.tensordot(np.conj(T[k, :]), ey, axes=1) for k in outs])
+    labels = [f"inputs T^dagger e_{k + 1}: all light to output {k + 1}" for k in outs]
+    E, u, v = _decimate(E, f["x"] * 1e6, f["y"] * 1e6)
+    return save_field(HERE / "i4-matmul-scaling" / "field.npz", E, u, v, [1550.0] * len(outs), labels=labels, half=True)
+
+
 def _weight(path, u, v, I):
     I = np.asarray(I, dtype=np.float32)
     np.savez_compressed(path, u=np.asarray(u, float), v=np.asarray(v, float), I=I.astype(np.float16))
@@ -101,7 +119,7 @@ def s3(src):
 
 if __name__ == "__main__":
     root = Path(sys.argv[1])
-    for slug, fn in (("d3-grating-coupler", d3), ("i1-matmul", i1), ("i2-duplexer", i2), ("i3-receiver", i3),
+    for slug, fn in (("d3-grating-coupler", d3), ("i1-matmul", i1), ("i2-duplexer", i2), ("i3-receiver", i3), ("i4-matmul-scaling", i4),
                      ("q3-quantum-walk", q3), ("s2-ring-sensor", s2), ("s3-sers", s3)):
         p = fn(root / slug)
         print(f"{slug:20s} -> {Path(p).relative_to(HERE)}  {Path(p).stat().st_size / 1e3:.0f} kB")

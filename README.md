@@ -197,7 +197,7 @@ removes the last level or two of render noise so a clip sits seamlessly on its p
 ## The lightsim example chips
 
 [`showcase/lightsim/`](showcase/lightsim) holds the scene files, layouts and field samples of
-the twelve example chips of [lightsim](https://github.com/su3co/lightsim), the open
+the example chips of [lightsim](https://github.com/su3co/lightsim), the open
 electromagnetic solver whose documentation and example reports are at
 [developer.su3labs.com/lightsim](https://developer.su3labs.com/lightsim/). The fields come from those
 simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's format.
@@ -216,6 +216,7 @@ simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's
 | [`i1-matmul`](https://developer.su3labs.com/lightsim/examples/i1-matmul/) | 4 × 4 DFT matrix multiplier | 1550 nm | field-driven (simulated phasor) |
 | [`i2-duplexer`](https://developer.su3labs.com/lightsim/examples/i2-duplexer/) | 1271 / 1331 nm duplexer | 1271 / 1331 nm | field-driven (simulated phasor) |
 | [`i3-receiver`](https://developer.su3labs.com/lightsim/examples/i3-receiver/) | Free-space receiver | 1550 nm | field-driven (simulated phasor) |
+| [`i4-matmul-scaling`](https://developer.su3labs.com/lightsim/examples/i4-matmul-scaling/) | 8 × 8 unitary matrix multiplier | 1550 nm | field-driven (simulated phasor) |
 
 *Field-driven* clips show the simulated phasor (Re E e^(−iωt)) from the lightsim run; *path-driven* clips are
 illustrations of where light goes, computed from the layout alone, and are captioned as such. Where the
