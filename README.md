@@ -7,7 +7,7 @@ pulses along the waveguides where it does not, coloured by wavelength.
 <p align="center">
   <a href="https://github.com/su3co/pic4D/releases/download/v0.1.0/pic4D-showreel.mp4"><img src="docs/showreel.webp" width="100%" alt="pic4D showreel: twelve photonic chips with light travelling through them"></a>
   <br>
-  <a href="https://github.com/su3co/pic4D/releases/download/v0.1.0/pic4D-showreel.mp4"><b>Watch the HD showreel</b></a> (1080p MP4) · twelve example chips of <a href="https://su3labs.com/lightsim/">lightsim</a>, one after the other
+  <a href="https://github.com/su3co/pic4D/releases/download/v0.1.0/pic4D-showreel.mp4"><b>Watch the HD showreel</b></a> (1080p MP4) · twelve example chips of <a href="https://developer.su3labs.com/lightsim/">lightsim</a>, one after the other
 </p>
 
 ```sh
@@ -28,18 +28,18 @@ pic4d render chip.toml -o out/ --style dark --size 1920x1080 --seconds 7 --mp4 c
 Each example also has a 1440 × 1080 loop on a pure white ground (`white`) and on #0c0e12 (`dark`), made for the light and dark themes of the example pages; click a still to open the example's report.
 
 <p align="center">
-<a href="https://su3labs.com/lightsim/examples/q1-gbs/"><img src="docs/gallery/q1-gbs-light.jpg" width="200" alt="Gaussian boson sampler"></a>
-<a href="https://su3labs.com/lightsim/examples/q2-fusion/"><img src="docs/gallery/q2-fusion-light.jpg" width="200" alt="Type-II fusion circuit"></a>
-<a href="https://su3labs.com/lightsim/examples/q3-quantum-walk/"><img src="docs/gallery/q3-quantum-walk-light.jpg" width="200" alt="Quantum walk in 21 coupled waveguides"></a>
-<a href="https://su3labs.com/lightsim/examples/s1-raman/"><img src="docs/gallery/s1-raman-light.jpg" width="200" alt="Waveguide-enhanced Raman chip"></a>
-<a href="https://su3labs.com/lightsim/examples/s2-ring-sensor/"><img src="docs/gallery/s2-ring-sensor-light.jpg" width="200" alt="Racetrack ring sensor"></a>
-<a href="https://su3labs.com/lightsim/examples/s3-sers/"><img src="docs/gallery/s3-sers-light.jpg" width="200" alt="Gold bowtie for SERS"></a>
-<a href="https://su3labs.com/lightsim/examples/d1-mzm/"><img src="docs/gallery/d1-mzm-light.jpg" width="200" alt="Mach–Zehnder modulator"></a>
-<a href="https://su3labs.com/lightsim/examples/d2-cwdm4/"><img src="docs/gallery/d2-cwdm4-light.jpg" width="200" alt="CWDM4 demultiplexer"></a>
-<a href="https://su3labs.com/lightsim/examples/d3-grating-coupler/"><img src="docs/gallery/d3-grating-coupler-light.jpg" width="200" alt="Grating coupler"></a>
-<a href="https://su3labs.com/lightsim/examples/i1-matmul/"><img src="docs/gallery/i1-matmul-light.jpg" width="200" alt="4 × 4 DFT matrix multiplier"></a>
-<a href="https://su3labs.com/lightsim/examples/i2-duplexer/"><img src="docs/gallery/i2-duplexer-light.jpg" width="200" alt="1271 / 1331 nm duplexer"></a>
-<a href="https://su3labs.com/lightsim/examples/i3-receiver/"><img src="docs/gallery/i3-receiver-light.jpg" width="200" alt="Free-space receiver"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/q1-gbs/"><img src="docs/gallery/q1-gbs-light.jpg" width="200" alt="Gaussian boson sampler"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/q2-fusion/"><img src="docs/gallery/q2-fusion-light.jpg" width="200" alt="Type-II fusion circuit"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/q3-quantum-walk/"><img src="docs/gallery/q3-quantum-walk-light.jpg" width="200" alt="Quantum walk in 21 coupled waveguides"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/s1-raman/"><img src="docs/gallery/s1-raman-light.jpg" width="200" alt="Waveguide-enhanced Raman chip"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/s2-ring-sensor/"><img src="docs/gallery/s2-ring-sensor-light.jpg" width="200" alt="Racetrack ring sensor"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/s3-sers/"><img src="docs/gallery/s3-sers-light.jpg" width="200" alt="Gold bowtie for SERS"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/d1-mzm/"><img src="docs/gallery/d1-mzm-light.jpg" width="200" alt="Mach–Zehnder modulator"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/d2-cwdm4/"><img src="docs/gallery/d2-cwdm4-light.jpg" width="200" alt="CWDM4 demultiplexer"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/d3-grating-coupler/"><img src="docs/gallery/d3-grating-coupler-light.jpg" width="200" alt="Grating coupler"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/i1-matmul/"><img src="docs/gallery/i1-matmul-light.jpg" width="200" alt="4 × 4 DFT matrix multiplier"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/i2-duplexer/"><img src="docs/gallery/i2-duplexer-light.jpg" width="200" alt="1271 / 1331 nm duplexer"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/i3-receiver/"><img src="docs/gallery/i3-receiver-light.jpg" width="200" alt="Free-space receiver"></a>
 </p>
 
 <p align="center">
@@ -199,23 +199,23 @@ removes the last level or two of render noise so a clip sits seamlessly on its p
 [`showcase/lightsim/`](showcase/lightsim) holds the scene files, layouts and field samples of
 the twelve example chips of [lightsim](https://github.com/su3co/lightsim), the open
 electromagnetic solver whose documentation and example reports are at
-[su3labs.com/lightsim](https://su3labs.com/lightsim/). The fields come from those
+[developer.su3labs.com/lightsim](https://developer.su3labs.com/lightsim/). The fields come from those
 simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's format.
 
 | example | chip | wavelength | light |
 |---|---|---|---|
-| [`q1-gbs`](https://su3labs.com/lightsim/examples/q1-gbs/) | Gaussian boson sampler | 1550 nm | path-driven |
-| [`q2-fusion`](https://su3labs.com/lightsim/examples/q2-fusion/) | Type-II fusion circuit | 1550 nm | path-driven |
-| [`q3-quantum-walk`](https://su3labs.com/lightsim/examples/q3-quantum-walk/) | Quantum walk in 21 coupled waveguides | 1550 nm | path-driven, brightness from simulated \|E\|² |
-| [`s1-raman`](https://su3labs.com/lightsim/examples/s1-raman/) | Waveguide-enhanced Raman chip | 785 nm | path-driven |
-| [`s2-ring-sensor`](https://su3labs.com/lightsim/examples/s2-ring-sensor/) | Racetrack ring sensor | 1550 nm | path-driven, brightness from simulated \|E\|² |
-| [`s3-sers`](https://su3labs.com/lightsim/examples/s3-sers/) | Gold bowtie for SERS | 847 nm | simulated \|E\|², pulsing illustrative |
-| [`d1-mzm`](https://su3labs.com/lightsim/examples/d1-mzm/) | Mach–Zehnder modulator | 1310 nm | path-driven |
-| [`d2-cwdm4`](https://su3labs.com/lightsim/examples/d2-cwdm4/) | CWDM4 demultiplexer | 1271 / 1291 / 1311 / 1331 nm | path-driven |
-| [`d3-grating-coupler`](https://su3labs.com/lightsim/examples/d3-grating-coupler/) | Grating coupler | 1552.5 nm | field-driven (simulated phasor) |
-| [`i1-matmul`](https://su3labs.com/lightsim/examples/i1-matmul/) | 4 × 4 DFT matrix multiplier | 1550 nm | field-driven (simulated phasor) |
-| [`i2-duplexer`](https://su3labs.com/lightsim/examples/i2-duplexer/) | 1271 / 1331 nm duplexer | 1271 / 1331 nm | field-driven (simulated phasor) |
-| [`i3-receiver`](https://su3labs.com/lightsim/examples/i3-receiver/) | Free-space receiver | 1550 nm | field-driven (simulated phasor) |
+| [`q1-gbs`](https://developer.su3labs.com/lightsim/examples/q1-gbs/) | Gaussian boson sampler | 1550 nm | path-driven |
+| [`q2-fusion`](https://developer.su3labs.com/lightsim/examples/q2-fusion/) | Type-II fusion circuit | 1550 nm | path-driven |
+| [`q3-quantum-walk`](https://developer.su3labs.com/lightsim/examples/q3-quantum-walk/) | Quantum walk in 21 coupled waveguides | 1550 nm | path-driven, brightness from simulated \|E\|² |
+| [`s1-raman`](https://developer.su3labs.com/lightsim/examples/s1-raman/) | Waveguide-enhanced Raman chip | 785 nm | path-driven |
+| [`s2-ring-sensor`](https://developer.su3labs.com/lightsim/examples/s2-ring-sensor/) | Racetrack ring sensor | 1550 nm | path-driven, brightness from simulated \|E\|² |
+| [`s3-sers`](https://developer.su3labs.com/lightsim/examples/s3-sers/) | Gold bowtie for SERS | 847 nm | simulated \|E\|², pulsing illustrative |
+| [`d1-mzm`](https://developer.su3labs.com/lightsim/examples/d1-mzm/) | Mach–Zehnder modulator | 1310 nm | path-driven |
+| [`d2-cwdm4`](https://developer.su3labs.com/lightsim/examples/d2-cwdm4/) | CWDM4 demultiplexer | 1271 / 1291 / 1311 / 1331 nm | path-driven |
+| [`d3-grating-coupler`](https://developer.su3labs.com/lightsim/examples/d3-grating-coupler/) | Grating coupler | 1552.5 nm | field-driven (simulated phasor) |
+| [`i1-matmul`](https://developer.su3labs.com/lightsim/examples/i1-matmul/) | 4 × 4 DFT matrix multiplier | 1550 nm | field-driven (simulated phasor) |
+| [`i2-duplexer`](https://developer.su3labs.com/lightsim/examples/i2-duplexer/) | 1271 / 1331 nm duplexer | 1271 / 1331 nm | field-driven (simulated phasor) |
+| [`i3-receiver`](https://developer.su3labs.com/lightsim/examples/i3-receiver/) | Free-space receiver | 1550 nm | field-driven (simulated phasor) |
 
 *Field-driven* clips show the simulated phasor (Re E e^(−iωt)) from the lightsim run; *path-driven* clips are
 illustrations of where light goes, computed from the layout alone, and are captioned as such. Where the
