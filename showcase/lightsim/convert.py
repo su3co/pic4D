@@ -8,7 +8,7 @@ Reads each example's ``results/`` and writes, next to the scene files here:
 * ``<slug>/weight.npz`` intensity maps |E|^2 (u, v, I): drawn directly in an intensity
   animation (q3, s3) or used to weight the brightness of a path-driven one (s2).
 
-The example reports, with the solver set-ups, are at https://su3labs.com/lightsim/ .
+The example reports, with the solver set-ups, are at https://developer.su3labs.com/lightsim/ .
 """
 
 from __future__ import annotations
