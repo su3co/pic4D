@@ -1,0 +1,46 @@
+name = "Superconducting resonator chip"
+subtitle = "200 nm film on 500 µm Si · 5.9–8.4 GHz"
+gds = "q5-resonator-chip.gds"
+# the quantum RF PDK's resonator test chip (9 mm x 3.5 mm): two probelines with
+# eight quarter-wave CPW resonators each; layer 901 the centre conductors, layer 900
+# the ground plane with its slots opened for legibility (see the example's design.py)
+
+[[layer]]
+gds = [901, 0]
+zmin = 0.0
+zmax = 0.3
+material = "metal"
+role = "core"
+
+[[layer]]
+gds = [900, 0]
+zmin = 0.0
+zmax = 0.2
+material = "metal"
+role = "solid"
+opacity = 0.55
+
+[substrate]
+material = "si"
+
+[light]
+mode = "field"
+field = "field.npz"
+cycles = 5
+sequence = true
+crossfade = 0.25
+percentile = 99.9
+caption = "Circuit-model voltage on the centre conductors (not a field solve), the drive stepping through the sixteen resonances from 5.94 to 8.41 GHz: each resonator rings in turn and the probeline beyond it dims; brightness compressed, colour arbitrary."
+
+[style_overrides.dark.light]
+field_gamma = 0.35
+
+[style_overrides.white.light]
+field_gamma = 0.35
+
+[camera]
+move = "orbit"
+azimuth = -72
+elevation = 38
+amplitude = 8
+zoom = 1.04

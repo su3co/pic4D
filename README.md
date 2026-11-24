@@ -31,6 +31,7 @@ Each example also has a 1440 × 1080 loop on a pure white ground (`white`) and o
 <a href="https://developer.su3labs.com/lightsim/examples/q1-gbs/"><img src="docs/gallery/q1-gbs-light.jpg" width="200" alt="Gaussian boson sampler"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/q2-fusion/"><img src="docs/gallery/q2-fusion-light.jpg" width="200" alt="Type-II fusion circuit"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/q3-quantum-walk/"><img src="docs/gallery/q3-quantum-walk-light.jpg" width="200" alt="Quantum walk in 21 coupled waveguides"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/q5-resonator-chip/"><img src="docs/gallery/q5-resonator-chip-light.jpg" width="200" alt="Superconducting resonator chip"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/s1-raman/"><img src="docs/gallery/s1-raman-light.jpg" width="200" alt="Waveguide-enhanced Raman chip"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/s2-ring-sensor/"><img src="docs/gallery/s2-ring-sensor-light.jpg" width="200" alt="Racetrack ring sensor"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/s3-sers/"><img src="docs/gallery/s3-sers-light.jpg" width="200" alt="Gold bowtie for SERS"></a>
@@ -46,6 +47,7 @@ Each example also has a 1440 × 1080 loop on a pure white ground (`white`) and o
 <img src="docs/gallery/q1-gbs-dark.jpg" width="200" alt="Gaussian boson sampler, dark style">
 <img src="docs/gallery/q2-fusion-dark.jpg" width="200" alt="Type-II fusion circuit, dark style">
 <img src="docs/gallery/q3-quantum-walk-dark.jpg" width="200" alt="Quantum walk in 21 coupled waveguides, dark style">
+<img src="docs/gallery/q5-resonator-chip-dark.jpg" width="200" alt="Superconducting resonator chip, dark style">
 <img src="docs/gallery/s1-raman-dark.jpg" width="200" alt="Waveguide-enhanced Raman chip, dark style">
 <img src="docs/gallery/s2-ring-sensor-dark.jpg" width="200" alt="Racetrack ring sensor, dark style">
 <img src="docs/gallery/s3-sers-dark.jpg" width="200" alt="Gold bowtie for SERS, dark style">
@@ -207,6 +209,7 @@ simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's
 | [`q1-gbs`](https://developer.su3labs.com/lightsim/examples/q1-gbs/) | Gaussian boson sampler | 1554.9 nm | path-driven |
 | [`q2-fusion`](https://developer.su3labs.com/lightsim/examples/q2-fusion/) | Type-II fusion circuit | 1550 nm | simulated \|E\|², pulsing illustrative |
 | [`q3-quantum-walk`](https://developer.su3labs.com/lightsim/examples/q3-quantum-walk/) | Quantum walk in 21 coupled waveguides | 1550 nm | path-driven, brightness from simulated \|E\|² |
+| [`q5-resonator-chip`](https://developer.su3labs.com/lightsim/examples/q5-resonator-chip/) | Superconducting resonator chip (microwave) | 5.9–8.4 GHz | field sequence: circuit-model voltage at each resonance, not a field solve |
 | [`s1-raman`](https://developer.su3labs.com/lightsim/examples/s1-raman/) | Waveguide-enhanced Raman chip | 785 nm | path-driven |
 | [`s2-ring-sensor`](https://developer.su3labs.com/lightsim/examples/s2-ring-sensor/) | Racetrack ring sensor | 1550 nm | path-driven, brightness from simulated \|E\|² |
 | [`s3-sers`](https://developer.su3labs.com/lightsim/examples/s3-sers/) | Gold bowtie for SERS | 847 nm | simulated \|E\|², pulsing illustrative |
