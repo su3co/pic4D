@@ -33,6 +33,7 @@ Each example also has a 1440 × 1080 loop on a pure white ground (`white`) and o
 <a href="https://developer.su3labs.com/lightsim/examples/quantum-walk/"><img src="docs/gallery/quantum-walk-light.jpg" width="200" alt="Quantum walk in 21 coupled waveguides"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/cat-state-source/"><img src="docs/gallery/cat-state-source-light.jpg" width="200" alt="Heralded cat-state source"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/resonator-chip/"><img src="docs/gallery/resonator-chip-light.jpg" width="200" alt="Superconducting resonator chip"></a>
+<a href="https://developer.su3labs.com/lightsim/examples/magic-state-factory/"><img src="docs/gallery/magic-state-factory-light.jpg" width="200" alt="Magic-state factory optics"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/raman-sensor/"><img src="docs/gallery/raman-sensor-light.jpg" width="200" alt="Waveguide-enhanced Raman chip"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/ring-sensor/"><img src="docs/gallery/ring-sensor-light.jpg" width="200" alt="Racetrack ring sensor"></a>
 <a href="https://developer.su3labs.com/lightsim/examples/bowtie-nanoantenna/"><img src="docs/gallery/bowtie-nanoantenna-light.jpg" width="200" alt="Gold bowtie for SERS"></a>
@@ -50,6 +51,7 @@ Each example also has a 1440 × 1080 loop on a pure white ground (`white`) and o
 <img src="docs/gallery/quantum-walk-dark.jpg" width="200" alt="Quantum walk in 21 coupled waveguides, dark style">
 <img src="docs/gallery/cat-state-source-dark.jpg" width="200" alt="Heralded cat-state source, dark style">
 <img src="docs/gallery/resonator-chip-dark.jpg" width="200" alt="Superconducting resonator chip, dark style">
+<img src="docs/gallery/magic-state-factory-dark.jpg" width="200" alt="Magic-state factory optics, dark style">
 <img src="docs/gallery/raman-sensor-dark.jpg" width="200" alt="Waveguide-enhanced Raman chip, dark style">
 <img src="docs/gallery/ring-sensor-dark.jpg" width="200" alt="Racetrack ring sensor, dark style">
 <img src="docs/gallery/bowtie-nanoantenna-dark.jpg" width="200" alt="Gold bowtie for SERS, dark style">
@@ -213,6 +215,7 @@ simulations; `showcase/lightsim/convert.py` turns a lightsim result into pic4D's
 | [`quantum-walk`](https://developer.su3labs.com/lightsim/examples/quantum-walk/) | Quantum walk in 21 coupled waveguides | 1550 nm | path-driven, brightness from simulated \|E\|² |
 | [`cat-state-source`](https://developer.su3labs.com/lightsim/examples/cat-state-source/) | Heralded cat-state source (inverse design) | 1550 nm | field-driven (simulated phasor) |
 | [`resonator-chip`](https://developer.su3labs.com/lightsim/examples/resonator-chip/) | Superconducting resonator chip (microwave) | 5.9–8.4 GHz | field sequence: circuit-model voltage at each resonance, not a field solve |
+| [`magic-state-factory`](https://developer.su3labs.com/lightsim/examples/magic-state-factory/) | Magic-state factory optics (inverse design) | 1550 nm | path-driven (an illustration of the light paths, not a simulation) |
 | [`raman-sensor`](https://developer.su3labs.com/lightsim/examples/raman-sensor/) | Waveguide-enhanced Raman chip | 785 nm | path-driven |
 | [`ring-sensor`](https://developer.su3labs.com/lightsim/examples/ring-sensor/) | Racetrack ring sensor | 1550 nm | path-driven, brightness from simulated \|E\|² |
 | [`bowtie-nanoantenna`](https://developer.su3labs.com/lightsim/examples/bowtie-nanoantenna/) | Gold bowtie for SERS | 847 nm | simulated \|E\|², pulsing illustrative |

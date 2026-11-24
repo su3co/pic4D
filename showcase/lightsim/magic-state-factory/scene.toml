@@ -1,0 +1,38 @@
+name = "Magic-state factory optics"
+subtitle = "Si3N4 800 nm in SiO2 · 68 measurement-based SUM gates · 1550 nm"
+gds = "magic-state-factory.gds"
+# a cut-out of the start of the factory chip: the first SUM gates of the encoder (U, C, C, U blocks),
+# their ancilla inputs and homodyne outputs, and the swap blocks that bring the data guides together
+frame = [-20.0, -25.0, 700.0, 445.0]
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.8
+material = "sin"
+role = "core"
+
+[display]
+crop_to_frame = true
+# the guides are 1 um wide; the inverse-designed blocks hold smaller islands that would set the display width
+core_width_um = 1.0
+
+[cladding]
+zmin = -0.4
+zmax = 1.2
+material = "sio2"
+
+[light]
+mode = "path"
+wavelength_nm = 1550.0
+source = [0.0, 120.0]
+coupling_gap_um = 3.5
+pulses = 3
+caption = "Illustration of the light paths (not a simulation) on the first gates of the factory chip."
+
+[camera]
+move = "orbit"
+azimuth = -35
+elevation = 40
+amplitude = 10
+zoom = 1.05
