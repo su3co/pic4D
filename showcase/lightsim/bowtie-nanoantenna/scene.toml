@@ -1,0 +1,37 @@
+name = "Gold bowtie for SERS"
+subtitle = "Au 20 nm on glass · 847 nm"
+gds = "bowtie-nanoantenna.gds"
+# a square of the glass slab around the antenna, cut out with the near-field map on it
+frame = [-0.11, -0.11, 0.11, 0.11]
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.020
+material = "au"
+role = "core"
+
+[display]
+widen_um = 0.0
+z_scale = 1.0
+crop_to_frame = true
+
+[substrate]
+material = "box"
+margin_um = 0.08
+
+[light]
+mode = "intensity"
+wavelength_nm = 847
+weight = "weight.npz"
+weight_gamma = 1.0
+offset_um = 0.020
+beats = 3
+caption = "Simulated near-field intensity |E|² at 847 nm; its brightness is modulated only for illustration."
+
+[camera]
+move = "orbit"
+azimuth = -62
+elevation = 40
+amplitude = 14
+zoom = 1.12   # closer on the antenna; the slab stays in frame

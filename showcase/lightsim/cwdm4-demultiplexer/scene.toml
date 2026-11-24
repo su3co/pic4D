@@ -1,0 +1,34 @@
+name = "CWDM4 demultiplexer"
+subtitle = "SOI 220 nm wire · 1271 / 1291 / 1311 / 1331 nm"
+gds = "cwdm4-demultiplexer.gds"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"
+
+[cladding]
+zmin = 0.0
+zmax = 0.8
+material = "sio2"
+
+[substrate]
+material = "substrate"
+
+[light]
+mode = "path"
+wavelength_nm = [1271, 1291, 1311, 1331]
+source = [-8.7, -1.6]
+# channel map of the design: 1271/1311 leave the lower stage-2 filter, 1291/1331 the upper
+routes = [[[373.7, -27.7]], [[373.7, 28.3]], [[373.7, -23.7]], [[373.6, 32.2]]]
+pulses = 3
+caption = "Illustration of the light paths (not a simulation): each CWDM4 channel leaves by its own output."
+
+[camera]
+move = "orbit"
+azimuth = -45
+elevation = 34
+amplitude = 12
+lens_mm = 50

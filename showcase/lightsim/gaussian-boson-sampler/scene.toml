@@ -1,0 +1,44 @@
+name = "Gaussian boson sampler"
+subtitle = "Si3N4 800 nm in SiO2 · 1554.9 nm pump"
+gds = "gaussian-boson-sampler.gds"
+# a cut-out of the 5.5 mm chip: the pump splitter tree, the four 113 um ring squeezers
+# and the first column of the MMI mesh (the mesh continues for three more columns)
+frame = [-150.0, -450.0, 2738.0, 682.0]
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.8
+material = "sin"
+role = "core"
+
+[[layer]]
+gds = [11, 0]
+zmin = 2.8
+zmax = 3.0
+material = "heater"
+role = "solid"
+
+[display]
+crop_to_frame = true
+
+[cladding]
+zmin = 0.0
+zmax = 3.8
+material = "sio2"
+
+[light]
+mode = "path"
+wavelength_nm = 1554.9
+# the pump input at the left end of the feed waveguide
+source = [-150.0, 0.0]
+coupling_gap_um = 4.0   # the 450 nm bus-ring gaps, resolved at the path raster of this 2.9 mm frame
+pulses = 3
+caption = "Illustration of the light paths (not a simulation): the 1554.9 nm pump is split four ways by MMIs, passes the four 113 µm ring squeezers and enters the MMI mesh."
+
+[camera]
+move = "orbit"
+azimuth = -35
+elevation = 40
+amplitude = 10
+zoom = 1.05

@@ -1,0 +1,30 @@
+name = "1271 / 1331 nm duplexer"
+subtitle = "SOI 220 nm · inverse design · 1271 / 1331 nm"
+gds = "wavelength-duplexer.gds"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"
+
+[display]
+widen_um = 0.0
+
+[cladding]
+zmin = -0.3
+zmax = 0.52
+material = "sio2"
+
+[light]
+mode = "field"
+field = "field.npz"
+cycles = 7
+caption = "Simulated fields Re E_y at 1271 nm and 1331 nm, shown together: each wavelength leaves by its own port."
+
+[camera]
+move = "orbit"
+azimuth = -62
+elevation = 42
+amplitude = 12

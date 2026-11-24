@@ -1,0 +1,35 @@
+name = "Type-II fusion circuit"
+subtitle = "SiN 400 nm in SiO2 · 1550 nm"
+gds = "fusion-circuit.gds"
+
+[[layer]]
+gds = [34, 0]
+zmin = 0.0
+zmax = 0.4
+material = "sin"
+role = "core"
+
+[cladding]
+zmin = 0.0
+zmax = 2.0
+material = "sio2"
+
+[substrate]
+material = "box"
+
+[light]
+mode = "intensity"
+wavelength_nm = 1550
+weight = "weight.npz"
+weight_gamma = 0.4
+percentile = 98.0
+offset_um = 0.4
+beats = 3
+plane_fade = [0.03, 0.0, 0.0]
+caption = "Simulated intensity |E|² at 1550 nm in the SiN core plane of the whole fusion circuit, rail a1 excited: through the crossing into the lower 50:50 coupler; its pulsing brightness is only an illustration."
+
+[camera]
+move = "orbit"
+azimuth = -60
+elevation = 32
+amplitude = 8

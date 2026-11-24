@@ -1,0 +1,32 @@
+name = "Heralded cat-state source"
+subtitle = "SiN 800 nm in SiO2 · quantum inverse design · 1550 nm"
+gds = "cat-state-source.gds"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.8
+material = "sin"
+role = "core"
+
+[display]
+widen_um = 0.0
+
+[cladding]
+zmin = -0.4
+zmax = 1.2
+material = "sio2"
+
+[light]
+mode = "field"
+field = "field.npz"
+cycles = 6
+sequence = true
+crossfade = 0.3
+caption = "Simulated field Re E_y at 1550 nm in the Si3N4 film, 3-D FDTD of the traced polygons: light entering the first and then the second squeezed input in turn."
+
+[camera]
+move = "orbit"
+azimuth = -62
+elevation = 42
+amplitude = 12

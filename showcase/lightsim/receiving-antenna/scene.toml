@@ -1,0 +1,48 @@
+name = "Free-space receiver"
+subtitle = "SOI 220 nm, 70 nm etch · inverse design · 1550 nm"
+gds = "receiving-antenna.gds"
+
+[[layer]]
+gds = [2, 0]
+zmin = 0.0
+zmax = 0.15
+material = "si"
+role = "solid"
+name = "slab"
+
+[[layer]]
+gds = [1, 0]
+zmin = 0.0
+zmax = 0.22
+material = "si"
+role = "core"
+name = "patch"
+
+[display]
+widen_um = 0.0
+z_scale = 1.5   # heights drawn 1.5 x, so the 1.6 um of field above the chip reads
+
+[substrate]
+material = "box"
+
+[light]
+mode = "field"
+field = "field.npz"
+cycles = 6
+percentile = 98.0
+# the cross-section stands on the centre line of the cut chip, fading out at its top and sides
+plane_z_um = [-0.6, 1.6]
+plane_fade = [0.06, 0.3, 0.0]
+caption = "Simulated field Re E_y at 1550 nm in the cross-section along the centre line (heights drawn 1.5 x): a beam 10° from vertical is fed into the silicon wire."
+
+[camera]
+move = "orbit"   # a flat chip seen from above at three-quarter view, the cut face towards the camera
+azimuth = -62
+elevation = 38
+amplitude = 8
+zoom = 1.1
+target_um = [-1.5, 1.2]   # the middle of the cut die
+
+[style_overrides.white.light]
+field_gamma = 0.5
+field_opacity = 1.0
